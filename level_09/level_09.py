@@ -12,6 +12,7 @@ depth = 0
 garbageBlock = False
 escNext = False
 result = 0
+result2 = 0
 
 for char in tuple(rawSrc):
     print("Analyzing {}".format(char))
@@ -21,6 +22,7 @@ for char in tuple(rawSrc):
     elif char == "!":
         escNext = True
     elif garbageBlock and char != ">":
+        result2 += 1
         continue
     elif garbageBlock and char == ">":
         garbageBlock = False
@@ -36,6 +38,7 @@ for char in tuple(rawSrc):
         continue
 
 print("Result1: {}".format(result))
+print("Result2: {}".format(result2))
 
 u"""
 --- Day 9: Stream Processing ---
@@ -84,5 +87,20 @@ Your goal is to find the total score for all groups in your input. Each group is
 
 What is the total score for all groups in your input?
 
+--- Part Two ---
+
+Now, you're ready to remove the garbage.
+
+To prove you've removed it, you need to count all of the characters within the garbage. The leading and trailing < and > don't count, nor do any canceled characters or the ! doing the canceling.
+
+    <>, 0 characters.
+    <random characters>, 17 characters.
+    <<<<>, 3 characters.
+    <{!>}>, 2 characters.
+    <!!>, 0 characters.
+    <!!!>>, 0 characters.
+    <{o"i!a,<{i<a>, 10 characters.
+
+How many non-canceled characters are within the garbage in your puzzle input?
 
 """
