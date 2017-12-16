@@ -1,6 +1,36 @@
 #!/usr/bin/env python
 
-"""
+with open('in.txt', 'r') as f:
+    for line in f:
+        line = line.strip()
+
+        if __debug__: print(line)
+        # test cases:
+        # line = "1212"
+        # line = "123123"
+        # line = "12131415"
+        indata = list(map(int, list(line)))
+
+        prev = indata[-1]
+        result = 0
+
+        for cv in indata:
+            if (cv == prev):
+                result += cv
+            prev = cv
+
+        print("result: {}".format(result))
+
+        result2 = 0
+        halfway = (len(indata) / 2)
+        for idx, val in enumerate(indata):
+            twin = int((idx + halfway) % len(indata))
+            if (val == indata[twin]):
+                result2 += val
+
+        print("result2: {}".format(result2))
+
+u"""
 --- Day 1: Inverse Captcha ---
 
 The night before Christmas, one of Santa's Elves calls you in a panic. "The printer's broken! We can't print the Naughty or Nice List!" By the time you make it to sub-basement 17, there are only a few minutes until midnight. "We have a big problem," she says; "there must be almost fifty bugs in this system, but nothing else can print The List. Stand in this square, quick! There's no time to explain; if you can convince them to pay you in stars, you'll be able to--" She pulls a lever and the world goes blurry.
@@ -37,33 +67,3 @@ For example:
     12131415 produces 4.
 
 """
-
-with open('in.txt', 'r') as f:
-    for line in f:
-        line = line.strip()
-
-        if __debug__: print(line)
-        # test cases:
-        # line = "1212"
-        # line = "123123"
-        # line = "12131415"
-        indata = list(map(int, list(line)))
-
-        prev = indata[-1]
-        result = 0
-
-        for cv in indata:
-            if (cv == prev):
-                result += cv
-            prev = cv
-
-        print("result: {}".format(result))
-
-        result2 = 0
-        halfway = (len(indata) / 2)
-        for idx, val in enumerate(indata):
-            twin = int((idx + halfway) % len(indata))
-            if (val == indata[twin]):
-                result2 += val
-
-        print("result2: {}".format(result2))
