@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" run as `python -O level_19.py` to disable debug garbage """
+""" run as `python -O level_20.py` to disable debug garbage """
 
 import re
 
@@ -49,27 +49,27 @@ for idx, val in enumerate(accs):
 print("Result1: {}".format(mid))
 
 step = 0
-while step < 100_000_000:
+destroyed = []
+while step < 1000:
     step += 1
     cstate = {}
     for idx, val in enumerate(ptcs):
+        if idx in destroyed:
+            continue
         vels[idx] = [a + b for a, b in zip(vels[idx], accs[idx])]
         ptcs[idx] = [a + b for a, b in zip(ptcs[idx], vels[idx])]
         curTupl = tuple(ptcs[idx])
         if curTupl in cstate:
-            cstate[curTupl] = cstate[curTupl] + ([idx])  # One more element at the same coordinate at this point in time
+            cstate[curTupl] = cstate[curTupl] + [idx]  # One more element at the same coordinate at this point in time
         else:
-            cstate[curTupl] = ([idx])  # The only element at this coordinate for now
+            cstate[curTupl] = [idx]  # The only element at this coordinate for now
     for k, v in cstate.items():
         if len(v) > 1:
             print("Collision found on step {}: {}".format(step, v))
-            for idtoremove in reversed(sorted(v)):
-                del ptcs[idtoremove]
-                del vels[idtoremove]
-                del accs[idtoremove]
-            print("Items left {}".format(len(ptcs)))
+            for idtoremove in v:
+                destroyed.append(idtoremove)
 
-print("Result2: {}".format(len(ptcs)))
+print("Result2: {}".format(len(ptcs) - len(destroyed)))
 
 u"""
 --- Day 20: Particle Swarm ---
