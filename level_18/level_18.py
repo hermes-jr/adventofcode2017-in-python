@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" run as `python -O level_08.py` to disable debug garbage """
+""" run as `python -O level_18.py` to disable debug garbage """
 
 regs = {}
 program = []

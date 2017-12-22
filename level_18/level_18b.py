@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" run as `python -O level_08b.py` to disable debug garbage """
+""" run as `python -O level_18b.py` to disable debug garbage """
 
 import queue
 import threading
