@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" run as `python -O level_18.py` to disable debug garbage """
+""" run as `python -O level_22.py` to disable debug garbage """
 from collections import deque
 
 infected = []
@@ -7,8 +7,8 @@ fname = "in.txt"
 bursts = 10000
 
 # Test
-#fname = "testin.txt"
-#bursts = 70
+# fname = "testin.txt"
+# bursts = 70
 
 initialwidth = 0
 
